@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Post = require('./Post');
 
-class User extends Model {}
+class User extends Model { }
 
 User.init(
   {
@@ -17,8 +17,8 @@ User.init(
       allowNull: false
     },
     first_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
@@ -29,28 +29,38 @@ User.init(
       }
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [6],
-        }
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [6],
+      }
     },
     followers: {
-        type: DataTypes.STRING,
-        foreignKey: {
-            ref: User,
-            key: "username"
-        }
+      type: DataTypes.STRING,
+      foreignKey: {
+        ref: User,
+        key: "username"
+      }
     },
     posts: {
-        type: DataTypes.INTEGER,
-        foreignKey: {
-            model: Post,
-            key: "id"
-        }
+      type: DataTypes.INTEGER,
+      foreignKey: {
+        model: Post,
+        key: "id"
+      }
     }
   },
   {
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        return updatedUserData;
+      },
+    },
     sequelize,
     timestamps: true,
     freezeTableName: true,
