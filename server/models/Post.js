@@ -16,22 +16,16 @@ Post.init(
     },
     author: {
         type: DataTypes.STRING,
-        foreignKey: {
-            ref: User,
+        allowNull: false,
+        references: {
+            model: "user",
             key: "username"
         }
     },
     post_text: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    likes: {
-        type: DataTypes.STRING,
-        foreignKey: {
-            ref: Likes,
-            key: "post_id"
-        }
-    },
+    }
   },
   {
     sequelize,

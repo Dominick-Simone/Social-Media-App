@@ -1,6 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Post = require('./Post');
+const bcrypt = require('bcrypt');
+
 
 class User extends Model { }
 
@@ -16,7 +18,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    first_name: {
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -37,18 +39,11 @@ User.init(
     },
     followers: {
       type: DataTypes.STRING,
-      foreignKey: {
-        ref: User,
+      references: {
+        model: "user",
         key: "username"
       }
     },
-    posts: {
-      type: DataTypes.INTEGER,
-      foreignKey: {
-        model: Post,
-        key: "id"
-      }
-    }
   },
   {
     hooks: {

@@ -2,12 +2,13 @@ const User = require("./User")
 const Post = require("./Post")
 const Likes = require("./Likes")
 
+
 User.hasMany(Post, {
-    foreignKey: "author",
-    onDelete: "CASCADE"
+    foreignKey: "author"
 })
 Post.belongsTo(User, {
-    foreignKey: "author"
+    foreignKey: "author",
+    onDelete: "CASCADE"
 })
 
 User.hasMany(Likes, {
@@ -26,26 +27,14 @@ Likes.belongsTo(Post, {
     foreignKey: "post_id",
 })
 
-Likes.hasOne(Post, {
-    foreignKey: "likes",
-    onDelete: "CASCADE"
-})
-Post.belongsTo(Likes, {
-    foreignKey: "likes",
-})
 
-User.hasMany(User, {
-    foreignKey: "followers",
-    onDelete: "CASCADE"
-})
-User.belongsToMany(User, {
-    foreignKey: "followers",
-})
+// User.hasMany(User, {
+//     foreignKey: "followers",
+//     onDelete: "CASCADE"
+// })
+// User.belongsToMany(User, {
+//     foreignKey: "followers",
+// })
 
-Post.hasOne(User, {
-    foreignKey: "posts",
-    onDelete: "CASCADE"
-})
-User.belongsTo(Post, {
-    foreignKey: "posts",
-})
+
+module.exports = {Post, User, Likes}

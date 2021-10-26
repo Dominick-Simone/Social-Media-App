@@ -12,15 +12,16 @@ const typeDefs = gql`
   }
   type Post {
     id: ID!
-    author: [User]!
+    author: String!
     post_text: String!
     createdAt: String!
-    likes: [Likes]
+    likes: String
+    user: User
   }
   type Likes {
       likes: Int
-      users_liked_by: [User]
-      post_id: [Post]
+      users_liked_by: String
+      post_id: ID!
   }
   type Query {
     users: [User]!
@@ -29,7 +30,7 @@ const typeDefs = gql`
   }
   type Mutation {
     createUser(username: String!, first_name: String!, last_name: String!, email: String!, password: String!): User
-    createPost(id: ID!, author: String!, post_text: String!): Post
+    createPost(author: String!, post_text: String!): Post
     addLike(users_liked_by: String!, post_id: ID!): Likes
   }
 `;

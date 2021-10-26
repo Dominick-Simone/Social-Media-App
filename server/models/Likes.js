@@ -7,26 +7,26 @@ class Likes extends Model {}
 
 Likes.init(
   {
-    likes: {
+    id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      unique: true
+      unique: true,
+      autoIncrement: true,
+      primaryKey: true
     },
     users_liked_by: {
         type: DataTypes.STRING,
-        foreignKey: {
-            ref: User,
+        references: {
+            model: "user",
             key: "username"
         }
     },
     post_id: {
-        type: DataTypes.STRING,
-        foreignKey: {
-            ref: Post,
+        type: DataTypes.INTEGER,
+        references: {
+            model: "post",
             key: "id"
         }
-    },
+    }
   },
   {
     sequelize,
