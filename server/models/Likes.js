@@ -13,11 +13,11 @@ Likes.init(
       autoIncrement: true,
       primaryKey: true
     },
-    users_liked_by: {
-        type: DataTypes.STRING,
+    user_liked_by: {
+        type: DataTypes.INTEGER,
         references: {
             model: "user",
-            key: "username"
+            key: "id"
         }
     },
     post_id: {

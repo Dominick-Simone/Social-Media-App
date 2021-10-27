@@ -1,4 +1,4 @@
-const {User, Likes, Post} = require("../models/index.js");
+const {User, Likes, Post, Follows} = require("../models/index.js");
 
 const resolvers = {
     Query: {
@@ -30,26 +30,39 @@ const resolvers = {
         return posts;
       },
       likes: async () => {
-        return await Likes.findAll(
-        //   {
-        //   include: [
-        //       {
-        //           model: Post,
-        //       },
-        //   ]
-        // }
+        const likes = await Likes.findAll(
+          {
+          include: [
+              {
+                  model: User,
+              },
+              {
+                  model: Post,
+              },
+          ]
+        }
         )
+        console.log(likes)
+        return likes
+      },
+      follows: async () => {
+        const follows = await Follows.findAll()
+        console.log(follows)
+        return follows;
       },
     },
     Mutation: {
       createUser: async (parent, {username, first_name, last_name, email, password}) => {
         return await User.create({username, first_name, last_name, email, password})
       },
-      createPost: async (parent, {author, post_text}) => {
-        return await Post.create({author, post_text})
+      createPost: async (parent, {user_id, post_text}) => {
+        return await Post.create({user_id, post_text})
       },
-      addLike: async (parent, {users_likes_by, post_id}) => {
-        return await Likes.create({users_likes_by, post_id})
+      addLike: async (parent, {user_liked_by, post_id}) => {
+        return await Likes.create({user_liked_by, post_id})
+      },
+      addFollow: async (parent, {followed, follower}) => {
+        return await Follows.create({followed_id: followed, follower_id: follower})
       }
     }
 };
