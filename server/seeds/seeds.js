@@ -96,6 +96,7 @@ const likesSeeds = [
         post_id: 5
     },
 ]
+
 const followsSeeds = [
     {
         follower_id: 2,
@@ -122,3 +123,5 @@ const followsSeeds = [
         followed_id: 5
     }
 ]
+
+module.exports = {userSeeds, followsSeeds, postSeeds, likesSeeds}
