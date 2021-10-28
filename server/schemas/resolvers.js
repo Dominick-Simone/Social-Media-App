@@ -5,11 +5,7 @@ const resolvers = {
       users: async () => {
         const users = await User.findAll(
           {
-          include: [
-              {
-                  model: Post,
-              },
-          ]
+          include: [Post, 'followers', 'following']
         }
         )
         console.log(users)

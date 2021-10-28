@@ -8,8 +8,9 @@ const typeDefs = gql`
     last_name: String!
     email: String!
     createdAt: String!
-    followers: [User]
     posts: [Post]
+    followers: [User]
+    following: [User]
   }
   type Post {
     id: ID!

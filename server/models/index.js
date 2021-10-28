@@ -27,8 +27,8 @@ Likes.belongsTo(Post, {
     foreignKey: "post_id",
 })
 
-User.belongsToMany(User, {through: "follows", as:"followers", foreignKey: "follower_id", otherKey: "followed_id"})
-User.belongsToMany(User, {through: "follows", as:"following", foreignKey: "followed_id", otherKey: "follower_id"})
+User.belongsToMany(User, {through: "follows", foreignKey: "follower_id", otherKey: "followed_id", as:"followers"})
+User.belongsToMany(User, {through: "follows", foreignKey: "followed_id", otherKey: "follower_id", as:"following"})
 
 
 

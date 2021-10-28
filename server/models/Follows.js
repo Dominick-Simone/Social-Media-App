@@ -14,10 +14,18 @@ Follows.init(
     follower_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: "user",
+          key: "id"
+      }
       },
     followed_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: "user",
+          key: "id"
+      }
     }
   },
   {
