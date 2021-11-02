@@ -58,7 +58,7 @@
   border: none;
 }
 .createPostFooterDiv {
-  border: 0px solid #282c34;
+  border: 0px solid #404040;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
   display: flex;
@@ -69,4 +69,33 @@
 }
 .marginOne {
   margin: 1em;
+}
+header {
+  text-align: center;
+}
+.navigationStyles {
+  border: 0px solid #404040;
+  border-radius: 25px;
+  display: inline-block;
+  margin: 5px;
+  color: white;
+  padding: 10px 20px;
+  background-color: #404040;
+  font-weight: bold;
+  font-size: large;
+}
+.navigationStylesActive {
+  display: inline-block;
+  padding: 6px;
+  margin: 5px;
+  border: 2px solid #001f3f;
+  background-color: #001f3f;
+  border-radius: 10%;
+  color: white;
+  font-weight: 900;
+  font-size: large;
+}
+.linkStyles {
+  text-decoration: none;
+  color: steelblue;
 }
