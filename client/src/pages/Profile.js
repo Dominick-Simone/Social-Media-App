@@ -17,7 +17,6 @@ const Profile = () => {
     return (
         <>
 
-            <h3>{`${user.first_name} @${user.username}`}</h3>
             {user.posts.map((post) => {
                 return <Post username={user.username} firstName={user.first_name} postText={post.post_text}/>
             })}
