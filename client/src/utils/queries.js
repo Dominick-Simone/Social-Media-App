@@ -39,3 +39,16 @@ query userByUsername($username: String!) {
     }
   }
 `;
+export const QUERY_POSTS = gql`
+query posts {
+  posts {
+    id
+    post_text
+    user {
+      username
+      first_name
+    }
+    createdAt
+  }
+}
+`;
