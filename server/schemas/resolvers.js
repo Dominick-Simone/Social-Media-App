@@ -11,6 +11,15 @@ const resolvers = {
         console.log(users)
         return users
       },
+      user: async (parent, { username }) => {
+        const params = username ? { username } : {};
+        const user = await User.findOne({ where: { username: params.username }, include: [
+          {
+            model: Post
+          }
+        ] });
+        return user;
+      },
       posts: async () => {
 
         const posts = await Post.findAll(
