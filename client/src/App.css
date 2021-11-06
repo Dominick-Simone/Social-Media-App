@@ -99,3 +99,83 @@ header {
   text-decoration: none;
   color: steelblue;
 }
+
+.signUp {
+  margin: auto;
+  width: 360px;
+  height: 520px;
+  border-radius: 6px;
+  background-color: rgb(93, 91, 91);
+}
+.signUpHeader {
+  text-align: center;
+  padding-top: 15px;
+}
+.signUpForm {
+  width: 300px;
+  margin-left: 20px;
+}
+.signUpFormLabel {
+  display: flex;
+  margin-top: 1em;
+  font-size: 18px;
+}
+.signUpFormInput {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid black;
+  border-radius: 6px;
+  outline: none;
+}
+.signUpFormSubmit {
+  height: 35px;
+  width: 316px;
+  margin-top: 20px;
+  border: none;
+  background: white;
+  color: black;
+  font-size: 18px;
+}
+.signUpText {
+  text-align: center;
+}
+
+.loginText {
+  text-align: center;
+}
+.login {
+  width: 360px;
+  height: 300px;
+  border-radius: 6px;
+  background-color: rgb(93, 91, 91);
+  margin: auto;
+}
+.loginForm {
+  width: 300px;
+  margin-left: 20px;
+}
+.loginLabel {
+  display: flex;
+  margin-top: 1em;
+  font-size: 18px;
+}
+.loginInput {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid black;
+  border-radius: 6px;
+  outline: none;
+}
+.loginFormSubmit {
+  height: 35px;
+  width: 316px;
+  margin-top: 20px;
+  border: none;
+  background: white;
+  color: black;
+  font-size: 18px;
+}
+.loginHeader {
+  text-align: center;
+  padding-top: 15px;
+}
