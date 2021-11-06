@@ -28,6 +28,7 @@ query userByUsername($username: String!) {
         first_name
         createdAt
         posts {
+          id
           post_text
         }
         followers {
@@ -39,6 +40,7 @@ query userByUsername($username: String!) {
     }
   }
 `;
+
 export const QUERY_POSTS = gql`
 query posts {
   posts {
@@ -50,5 +52,11 @@ query posts {
     }
     createdAt
   }
+}
+`;
+
+export const GET_LIKES = gql`
+query getLikes($post_id: ID!) {
+  getLikes(post_id: $post_id) 
 }
 `;
