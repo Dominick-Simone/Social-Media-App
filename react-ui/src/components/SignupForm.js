@@ -23,12 +23,9 @@ const SignupForm = () => {
       [name]: value,
     });
   };
-  console.log(formState)
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
-        console.log("before mutation")
       const mutationResponse = await createUser({
       variables: {
         username: formState.username,
@@ -38,8 +35,6 @@ const SignupForm = () => {
         last_name: formState.last_name,
       },
     });
-    console.log("after mutation")
-      console.log(mutationResponse.data)
       Auth.login(mutationResponse.data.createUser.token);
     } catch (e) {
       console.error(e);
