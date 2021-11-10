@@ -1,72 +1,72 @@
 const userSeeds = [
     {
-        username: "domsimone",
+        username: "Domsimone",
         first_name: "Dominick",
         last_name: "Simone",
         email: "domsimonedev@gmail.com",
         password: "password123"
     },
     {
-        username: "domsimone1",
-        first_name: "Dominick",
-        last_name: "Simone",
-        email: "domsimonedev1@gmail.com",
+        username: "John3445",
+        first_name: "John",
+        last_name: "John",
+        email: "john@gmail.com",
         password: "password123"
     },
     {
-        username: "domsimone2",
-        first_name: "Dominick",
-        last_name: "Simone",
-        email: "domsimonedev2@gmail.com",
+        username: "Jim3847",
+        first_name: "Jim",
+        last_name: "Jim",
+        email: "Jim@gmail.com",
         password: "password123"
     },
     {
-        username: "domsimone3",
-        first_name: "Dominick",
-        last_name: "Simone",
-        email: "domsimonedev3@gmail.com",
+        username: "Anthony3727",
+        first_name: "Anthony",
+        last_name: "Anthony",
+        email: "Anthony@gmail.com",
         password: "password123"
     },
     {
-        username: "domsimone4",
-        first_name: "Dominick",
-        last_name: "Simone",
-        email: "domsimonedev4@gmail.com",
+        username: "Andrew3521",
+        first_name: "Andrew",
+        last_name: "Andrew",
+        email: "Andrew@gmail.com",
         password: "password123"
     },
     {
-        username: "domsimone5",
-        first_name: "Dominick",
-        last_name: "Simone",
-        email: "domsimonedev5@gmail.com",
+        username: "Ryan4634",
+        first_name: "Ryan",
+        last_name: "Ryan",
+        email: "Ryan@gmail.com",
         password: "password123"
     },
 ]
 
 const postSeeds = [
     {
-        user_id: 1,
-        post_text: "Dominick's first post"
+        user_id: 4,
+        post_text: "This is just an example post."
     },
     {
         user_id: 2,
-        post_text: "Dominick1's first post"
+        post_text: "This is just an example post."
     },
     {
         user_id: 3,
-        post_text: "Dominick2's first post"
+        post_text: "This is just an example post."
     },
     {
-        user_id: 4,
-        post_text: "Dominick3's first post"
+        user_id: 1,
+        post_text: "This is just an example post."
     },
     {
         user_id: 5,
-        post_text: "Dominick4's first post"
+        post_text: "This is just an example post."
     },
     {
         user_id: 6,
-        post_text: "Dominick5's first post"
+        post_text: "This is just an example post."
     },
 ]
 
