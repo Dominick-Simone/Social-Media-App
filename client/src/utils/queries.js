@@ -30,12 +30,22 @@ query userByUsername($username: String!) {
         posts {
           id
           post_text
+          createdAt
+          likes {
+            id
+          }
         }
         followers {
           username
+          posts {
+            post_text
+          }
         }
         following {
           username
+          posts {
+            post_text
+          }
         }
     }
   }
@@ -50,6 +60,9 @@ query posts {
       username
       first_name
     }
+    likes {
+      id
+    }
     createdAt
   }
 }
@@ -58,5 +71,38 @@ query posts {
 export const GET_LIKES = gql`
 query getLikes($post_id: ID!) {
   getLikes(post_id: $post_id) 
+}
+`;
+
+export const HOMEPAGE = gql`
+query userByUsername($user_id: ID!) {
+  homepage(user_id: $user_id) {
+      id
+      username
+      first_name
+      createdAt
+      posts {
+        id
+        post_text
+        createdAt
+      }
+      following {
+        username
+        id
+        posts {
+          id
+          post_text
+          createdAt
+          user {
+            username
+            first_name
+            id
+          }
+          likes {
+            id
+          }
+        }
+      }
+  }
 }
 `;
