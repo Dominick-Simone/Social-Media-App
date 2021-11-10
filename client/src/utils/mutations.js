@@ -23,3 +23,23 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const CREATE_POST = gql`
+mutation($user_id: ID! $post_text: String!){
+  createPost(user_id: $user_id post_text: $post_text) {
+    id
+  }
+}
+`;
+
+export const TOGGLE_LIKE = gql`
+mutation($user_liked_by: ID! $post_id: ID!){
+	toggleLike(user_liked_by: $user_liked_by post_id: $post_id)
+}
+`;
+
+export const TOGGLE_FOLLOW = gql`
+mutation($followed: ID! $user_id: ID!){
+  toggleFollow(followed: $followed user_id: $user_id) 
+}
+`;
