@@ -15,7 +15,6 @@ const resolvers = {
           ]
         }
         )
-        console.log(users)
         return users;
       },
       user: async (parent, { username }) => {
@@ -35,7 +34,6 @@ const resolvers = {
           },
           {where: {id: user_id}}
         )
-        console.log(users)
         return users;
       },
       getLikes: async (parent, { post_id }) => {
@@ -57,7 +55,6 @@ const resolvers = {
         ]
         }
         )
-        console.log(posts)
         return posts;
       },
       likes: async () => {
@@ -73,12 +70,10 @@ const resolvers = {
           ]
         }
         )
-        console.log(likes)
         return likes;
       },
       follows: async () => {
         const follows = await Follows.findAll()
-        console.log(follows)
         return follows;
       },
     },
@@ -93,16 +88,12 @@ const resolvers = {
       },
       toggleLike: async (parent, {post_id, user_liked_by}) => {
         const checkLikes = await Likes.findAll({where: {post_id: post_id}})
-        console.log(`CheckLikes Length: ${checkLikes.length}`)
         for (i = 0; i < checkLikes.length; i++) {
           if (checkLikes[i].user_liked_by == user_liked_by) {
-            console.log(`deleting likes where id: ${checkLikes[i].id}`)
             await Likes.destroy({where: {id: checkLikes[i].id}})
             return -1;
           }
-          console.log(`CheckLikes Look Post Id ${checkLikes[i].id} CheckLikes User ${checkLikes[i].user_liked_by}`)
         }
-        console.log("creating like")
         await Likes.create({user_liked_by, post_id})
         return 1;
       },
@@ -110,11 +101,9 @@ const resolvers = {
         const checkFollows = await Follows.findAll({where: {follower_id: user_id}})
         for (i = 0; i < checkFollows.length; i++) {
           if (checkFollows[i].followed_id == followed) {
-            console.log(`deleting follow where id: ${checkFollows[i].id}`)
             await Follows.destroy({where: {id: checkFollows[i].id}})
             return false;
           }
-          console.log(`checkFollows Look Post Id ${checkFollows[i].id} checkFollows User ${checkFollows[i].user_liked_by}`)
         }
         await Follows.create({followed_id: followed, follower_id: user_id})
         return true;
