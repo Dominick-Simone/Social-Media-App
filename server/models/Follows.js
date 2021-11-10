@@ -18,7 +18,7 @@ Follows.init(
           model: "user",
           key: "id"
       }
-      },
+    },
     followed_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
