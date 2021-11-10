@@ -84,21 +84,6 @@ header {
   font-weight: bold;
   font-size: large;
 }
-.navigationStylesActive {
-  display: inline-block;
-  padding: 6px;
-  margin: 5px;
-  border: 2px solid #001f3f;
-  background-color: #001f3f;
-  border-radius: 10%;
-  color: white;
-  font-weight: 900;
-  font-size: large;
-}
-.linkStyles {
-  text-decoration: none;
-  color: steelblue;
-}
 
 .signUp {
   margin: auto;
@@ -178,4 +163,147 @@ header {
 .loginHeader {
   text-align: center;
   padding-top: 15px;
+}
+.profileOuterDiv {
+  width: 35vw;
+  margin: 2em auto;
+}
+.profileHeaderDiv {
+  border: 0px solid #282c34;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  background-color: #404040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3em;
+}
+.profileTextDiv {
+  text-align: center;
+  background-color: rgb(93, 91, 91);
+  padding: .1em;
+  border: 0px solid #282c34;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.alignCenter {
+  text-align: center;
+}
+@media only screen and (max-width: 800px) {
+  .singlePostOuterDiv {
+    width: 85vw;
+    margin: 2em auto;
+  }
+  .singlePostHeaderDiv {
+    border: 0px solid #282c34;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    background-color: #404040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2em;
+  }
+  .singlePostTextDiv {
+    background-color: rgb(93, 91, 91);
+    padding: 1.5em;
+  }
+  .singlePostFooterDiv {
+    border: 0px solid #282c34;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #404040;
+    height: 2em;
+  }
+  
+  .createPostOuterDiv {
+    width: 85vw;
+    margin: 2em auto;
+  }
+  .createPostHeaderDiv {
+    border: 0px solid #282c34;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    background-color: #404040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2em;
+  }
+  .createPostTextAreaDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .createPostTextArea {
+    background-color: rgb(93, 91, 91);
+    color: white;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1em;
+    outline: none;
+    font-weight: bold;
+    resize: none;
+    border: none;
+  }
+  .createPostFooterDiv {
+    border: 0px solid #404040;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #404040;
+    height: 2em;
+  }
+  .navigationStyles {
+    border: 0px solid #404040;
+    border-radius: 25px;
+    display: inline-block;
+    margin: 5px;
+    color: white;
+    padding: 10px 20px;
+    background-color: #404040;
+    font-weight: bold;
+    font-size: medium;
+    list-style-type: none;
+  }
+  .profileOuterDiv {
+    width: 85vw;
+    margin: 2em auto;
+  }
+}
+.postButton {
+  padding: 3px 8px;
+  background-color: white;
+  color: black;
+  border: 0px solid #404040;
+  border-radius: 25px;
+  outline: none;
+  font-size: medium;
+  font-weight: 700;
+}
+.postButton:active {
+  transform: scale(0.96);
+  box-shadow: 3px 2px 22px 1px rgba(104, 72, 72, 0.24);
+}
+.postButton:disabled {
+  opacity: .3;
+}
+.followButton {
+  padding: 5px 8px;
+  background-color: white;
+  color: black;
+  border: 0px solid #404040;
+  border-radius: 25px;
+  outline: none;
+  font-size: medium;
+  font-weight: 700;
+}
+.followButton:active {
+  transform: scale(0.96);
+  box-shadow: 3px 2px 22px 1px rgba(104, 72, 72, 0.24);
 }
