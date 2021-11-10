@@ -8,7 +8,6 @@ import Auth from '../utils/auth';
 const Discover = () => {
     const { loading, data } = useQuery(QUERY_POSTS);
       const posts = data?.posts || [];
-      console.log(posts)
     if(loading) {
         return <h1></h1>;
     }

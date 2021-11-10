@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import Auth from "../utils/auth";
 const Header = () => {
     return (
@@ -6,15 +7,15 @@ const Header = () => {
             <ul>
                 {Auth.loggedIn() ? (
                 <>
-                    <a className="linkStyles" href="/"><li className="navigationStyles">Home</li></a>
-                    <a className="linkStyles" href={`/${Auth.getProfile().data.username}`}><li className="navigationStyles">Dashboard</li></a>
-                    <a className="linkStyles" href="/discover"><li className="navigationStyles">Discover</li></a>
-                    <a className="linkStyles" href="/" onClick={() => Auth.logout()}><li className="navigationStyles"> Logout</li></a>
+                    <Link className="linkStyles" to="/"><li className="navigationStyles">Home</li></Link>
+                    <Link className="linkStyles" to={`/${Auth.getProfile().data.username}`}><li className="navigationStyles">Dashboard</li></Link>
+                    <Link className="linkStyles" to="/discover"><li className="navigationStyles">Discover</li></Link>
+                    <Link className="linkStyles" to="/" onClick={() => Auth.logout()}><li className="navigationStyles"> Logout</li></Link>
                 </>
                 ) : (
                 <>
-                    <a className="linkStyles" href="/discover"><li className="navigationStyles">Discover</li></a>
-                    <a className="linkStyles" href="/login"><li className="navigationStyles">Login</li></a>
+                    <Link className="linkStyles" to="/discover"><li className="navigationStyles">Discover</li></Link>
+                    <Link className="linkStyles" to="/login"><li className="navigationStyles">Login</li></Link>
                 </>
 
                 )
