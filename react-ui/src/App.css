@@ -275,6 +275,9 @@ header {
     width: 85vw;
     margin: 2em auto;
   }
+  .marginOne {
+    margin: .25em;
+  }
 }
 .postButton {
   padding: 3px 8px;
