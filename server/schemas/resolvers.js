@@ -25,6 +25,7 @@ const resolvers = {
       homepage: async (parent, { user_id }) => {
         const users = await User.findOne(
           {
+            where: {id: user_id},
             include: 
             [
               {model: Post, include: [Likes]}, 
@@ -32,7 +33,6 @@ const resolvers = {
               {model: User, as: "following", include: {model: Post, include: [User, Likes]}}
             ]
           },
-          {where: {id: user_id}}
         )
         return users;
       },
