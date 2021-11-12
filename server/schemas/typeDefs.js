@@ -44,6 +44,7 @@ const typeDefs = gql`
     likes: [Likes]!
     follows: [Follows]!
     homepage(user_id: ID!): User
+    dashboard: User
   }
   type Mutation {
     createUser(username: String!, first_name: String!, last_name: String!, email: String!, password: String!): Auth

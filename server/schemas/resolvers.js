@@ -17,9 +17,15 @@ const resolvers = {
         )
         return users;
       },
-      user: async (parent, { username }) => {
+      user: async (parent, { username }, context) => {
+        console.log("Context: ", context.user)
         const params = username ? { username } : {};
         const user = await User.findOne({ where: { username: params.username }, include: [{model: Post, include: [Likes]}, 'followers', 'following'] });
+        return user;
+      },
+      dashboard: async (parent, args, context) => {
+        console.log("Context: ", context.user)
+        const user = await User.findOne({ where: { id: context.user.id }, include: [{model: Post, include: [Likes]}, 'followers', 'following'] });
         return user;
       },
       homepage: async (parent, { user_id }) => {

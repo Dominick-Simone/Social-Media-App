@@ -10,14 +10,12 @@ import Signup from './pages/Signup';
 import './App.css';
 import Auth from '../src/utils/auth'
 import Discover from './pages/Discover';
+import Dashboard from './pages/Dashboard';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-});
+
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -29,6 +27,10 @@ const authLink = setContext((_, { headers }) => {
       authorization: token ? `Bearer ${token}` : '',
     },
   };
+});
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
@@ -48,6 +50,9 @@ function App() {
             </Route>
             <Route exact path="/discover">
               <Discover />
+            </Route>
+            <Route exact path="/dashboard">
+              <Dashboard />
             </Route>
             <Route exact path="/:username">
               <Profile />

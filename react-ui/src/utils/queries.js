@@ -106,3 +106,34 @@ query userByUsername($user_id: ID!) {
   }
 }
 `;
+
+export const QUERY_DASHBOARD = gql`
+query userByUsername {
+    dashboard {
+        id
+        username
+        first_name
+        createdAt
+        posts {
+          id
+          post_text
+          createdAt
+          likes {
+            id
+          }
+        }
+        followers {
+          username
+          posts {
+            post_text
+          }
+        }
+        following {
+          username
+          posts {
+            post_text
+          }
+        }
+    }
+  }
+`;

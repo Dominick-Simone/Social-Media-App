@@ -2,18 +2,14 @@ import React, {useState} from 'react'
 import Post from "../components/Post"
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { QUERY_USER, QUERY_USER_BY_USERNAME } from '../utils/queries';
+import { QUERY_DASHBOARD } from '../utils/queries';
 import getMonthDay from '../utils/dateFormatter';
 import { TOGGLE_FOLLOW } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-const Profile = () => {
-    let { username } = useParams();
-    // const [follows, setFollows] = useState("")
-    const { loading, data } = useQuery(QUERY_USER_BY_USERNAME, {
-        variables: { username: username },
-    });
-    const user = data?.user || [];
+const Dashboard = () => {
+    const { loading, data } = useQuery(QUERY_DASHBOARD);
+    const user = data?.dashboard || [];
     const [toggleFollow, { error, likeData }] = useMutation(TOGGLE_FOLLOW)
     if (loading) {
         return <h1></h1>;
@@ -39,4 +35,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default Dashboard
