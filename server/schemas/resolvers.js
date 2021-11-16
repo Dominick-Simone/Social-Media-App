@@ -108,11 +108,11 @@ const resolvers = {
         for (i = 0; i < checkFollows.length; i++) {
           if (checkFollows[i].followed_id == followed) {
             await Follows.destroy({where: {id: checkFollows[i].id}})
-            return false;
+            return -1;
           }
         }
         await Follows.create({followed_id: followed, follower_id: user_id})
-        return true;
+        return 1;
       },
       login: async (parent, { username, password }) => {
         const user = await User.findOne({where: { username: username }});
