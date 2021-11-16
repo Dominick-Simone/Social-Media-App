@@ -50,7 +50,7 @@ const typeDefs = gql`
     createUser(username: String!, first_name: String!, last_name: String!, email: String!, password: String!): Auth
     createPost(user_id: ID!, post_text: String!): Post
     toggleLike(user_liked_by: ID!, post_id: ID!): Int
-    toggleFollow(followed: ID!, user_id: ID!): Boolean
+    toggleFollow(followed: ID!, user_id: ID!): Int
     login(username: String!, password: String!): Auth
   }
 `;
