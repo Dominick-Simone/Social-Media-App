@@ -20,6 +20,15 @@ const typeDefs = gql`
     likes: [Likes]
     user: User
   }
+  type Comments {
+    id: ID
+    author_id: ID!
+    post_id: ID!
+    comment_text: String
+    createdAt: String
+    user: User
+    post: Post
+  }
   type Likes {
     id: ID!
     user_liked_by: ID!
@@ -37,6 +46,7 @@ const typeDefs = gql`
     user: User
   }
   type Query {
+    comments: [Comments]
     users: [User]!
     getLikes(post_id: ID!): Int
     user(username: String!): User!
@@ -49,6 +59,7 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String!, first_name: String!, last_name: String!, email: String!, password: String!): Auth
     createPost(user_id: ID!, post_text: String!): Post
+    createComment(post_id: ID!, comment_text: String!): Comments
     toggleLike(user_liked_by: ID!, post_id: ID!): Int
     toggleFollow(followed: ID!, user_id: ID!): Int
     login(username: String!, password: String!): Auth
