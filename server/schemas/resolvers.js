@@ -1,4 +1,4 @@
-const {User, Likes, Post, Follows} = require("../models/index.js");
+const {User, Likes, Post, Follows, Comments} = require("../models/index.js");
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -16,6 +16,11 @@ const resolvers = {
         }
         )
         return users;
+      },
+      comments: async () => {
+        const comments = await Comments.findAll({include: [User, Post]})
+        console.log(comments)
+        return comments;
       },
       user: async (parent, { username }, context) => {
         console.log("Context: ", context.user)
@@ -91,6 +96,9 @@ const resolvers = {
       },
       createPost: async (parent, {post_text, user_id}) => {
         return await Post.create({user_id, post_text})
+      },
+      createComment: async (parent, {comment_text, post_id}, context) => {
+        return await Comments.create({post_id, comment_text, author_id: context.user.id})
       },
       toggleLike: async (parent, {post_id, user_liked_by}) => {
         const checkLikes = await Likes.findAll({where: {post_id: post_id}})
