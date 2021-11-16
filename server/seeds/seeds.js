@@ -123,5 +123,37 @@ const followsSeeds = [
         followed_id: 5
     }
 ]
+const commentSeeds = [
+    {
+        post_id: 6,
+        author_id: 4,
+        comment_text: "This is just an example comment."
+    },
+    {
+        post_id: 5,
+        author_id: 2,
+        comment_text: "This is just an example comment."
+    },
+    {
+        post_id: 4,
+        author_id: 3,
+        comment_text: "This is just an example comment."
+    },
+    {
+        post_id: 3,
+        author_id: 1,
+        comment_text: "This is just an example comment."
+    },
+    {
+        post_id: 2,
+        author_id: 5,
+        comment_text: "This is just an example comment."
+    },
+    {
+        post_id: 1,
+        author_id: 6,
+        comment_text: "This is just an example comment."
+    },
+]
 
-module.exports = {userSeeds, followsSeeds, postSeeds, likesSeeds}
+module.exports = {userSeeds, followsSeeds, postSeeds, likesSeeds, commentSeeds}

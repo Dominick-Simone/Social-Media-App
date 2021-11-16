@@ -1,6 +1,6 @@
 const sequelize = require('../config/connection');
-const {Follows, Likes, User, Post} = require("../models/index.js")
-const {userSeeds, followsSeeds, postSeeds, likesSeeds} = require("./seeds")
+const {Follows, Likes, User, Post, Comments} = require("../models/index.js")
+const {userSeeds, followsSeeds, postSeeds, likesSeeds, commentSeeds} = require("./seeds")
 
 
 const seedDatabase = async () => {
@@ -9,6 +9,7 @@ const seedDatabase = async () => {
     const posts = await Post.bulkCreate(postSeeds)
     const likes = await Likes.bulkCreate(likesSeeds)
     const follows = await Follows.bulkCreate(followsSeeds)
+    const comments = await Comments.bulkCreate(commentSeeds)
 
     process.exit(0)
 }
