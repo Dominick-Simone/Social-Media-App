@@ -18,11 +18,15 @@ const Home = () => {
         return <h1></h1>;
     }
     const posts = [];
+    user.posts.forEach((post) => {
+        posts.push(post)
+    })
     user.following.forEach((following) => {
         following.posts.forEach((post) => {
             posts.push(post)
         })
     })
+    console.log(posts)
     return (
         <>
             {/* if logged in */}
