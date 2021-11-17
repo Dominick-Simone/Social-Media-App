@@ -39,7 +39,7 @@ const resolvers = {
             where: {id: user_id},
             include: 
             [
-              {model: Post, include: [Likes]}, 
+              {model: Post, include: [Likes, User]}, 
               "followers", 
               {model: User, as: "following", include: {model: Post, include: [User, Likes]}}
             ]
