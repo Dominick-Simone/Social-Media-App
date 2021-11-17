@@ -85,6 +85,14 @@ query userByUsername($user_id: ID!) {
         id
         post_text
         createdAt
+        likes {
+          id
+        }
+        user {
+          username
+            first_name
+            id
+        }
       }
       following {
         username
