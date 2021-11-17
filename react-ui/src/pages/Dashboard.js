@@ -34,7 +34,6 @@ const Dashboard = () => {
                 <div className="profileHeaderDiv">
                     <h3 className="marginOne">{user.first_name}  @{user.username}</h3>
                     <h4 className="marginOne">Followers: {followers} Following: {following}</h4>
-                    <button className="followButton" onClick={() => toggleFollow({variables: {followed: parseInt(user.id), user_id: parseInt(Auth.getProfile().data.id)}})}>Follow</button>
                 </div>
                 <div className="profileTextDiv">
                     <p>Account Created {accountCreated }</p>
