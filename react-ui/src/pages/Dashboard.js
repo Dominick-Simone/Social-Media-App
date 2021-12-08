@@ -12,6 +12,18 @@ const Dashboard = () => {
     const user = data?.dashboard || [];
     const [following, setFollowing] = useState(0)
     const [followers, setFollowers] = useState(0)
+    const [toggleFollow, { error, followData }] = useMutation(TOGGLE_FOLLOW, {
+        onCompleted: (data) => {
+            setFollowers(followers + data.toggleFollow) 
+            setFollowing(following + data.toggleFollow) 
+        }
+    })
+    useEffect(() => {
+        if (data) {
+            setFollowers(user.followers.length)
+            setFollowing(user.following.length)
+        }
+    },[data])
     if (loading) {
         return <h1></h1>;
     }
