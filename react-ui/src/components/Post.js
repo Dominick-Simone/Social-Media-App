@@ -5,6 +5,7 @@ import { GET_LIKES } from '../utils/queries';
 import { TOGGLE_LIKE } from "../utils/mutations"
 import getMonthDay from "../utils/dateFormatter";
 import Auth from '../utils/auth';
+import ReactEmoji from "react-emoji"
 
 const Post = ({username, firstName, postText, postId, createdAt, likes}) => {
 
@@ -24,17 +25,20 @@ const Post = ({username, firstName, postText, postId, createdAt, likes}) => {
     }
     const datePosted = getMonthDay(parseInt(createdAt))
     return (
-        <div className="singlePostOuterDiv">
+        <div className="postOuterDiv">
             <div className="singlePostHeaderDiv">
-                <h4 className="marginOne">{firstName} @<Link to={`/${username}`}>{username}</Link></h4><p>{datePosted}</p>
+                <h4 className="marginOne inline">{firstName} @{username == Auth.getProfile().data.username ? <Link to="/dashboard">{username}</Link> : <Link to={`/${username}`}>{username}</Link>}</h4><p className="inline">{datePosted}</p>
             </div>
             <div className="singlePostTextDiv">
-                <p>{postText}</p>
+                <p>{ReactEmoji.emojify(postText)}</p>
             </div>
             <div className="singlePostFooterDiv">
                 {Auth.loggedIn() ? (
                     <>
-                    <button className="marginOne postButton" onClick={() => handleClick()} datapostid={postId}>Like</button><h4>{likeCount}</h4></>) :
+                    {/* <button className="marginOne commentButton" datapostid={postId}>Comment</button> */}
+                    <button className="marginOne likeButton" onClick={() => handleClick()} datapostid={postId}>Like</button>
+                    <h4 className="likeCount">{likeCount}</h4>
+                    </>) :
                     <h4>Likes: {likeCount}</h4>
                 }
             </div>

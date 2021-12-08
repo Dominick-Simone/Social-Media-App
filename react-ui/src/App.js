@@ -55,7 +55,7 @@ function App() {
               <Dashboard />
             </Route>
             <Route exact path="/:username">
-              <Profile />
+             <Profile />
             </Route>
           </Switch>
       </Router>
