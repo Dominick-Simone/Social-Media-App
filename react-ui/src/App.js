@@ -49,13 +49,13 @@ function App() {
               <Signup />
             </Route>
             <Route exact path="/discover">
-              <Discover />
+              {!Auth.loggedIn() ? <Redirect to="/login" /> : <Discover />}
             </Route>
             <Route exact path="/dashboard">
-              <Dashboard />
+            {!Auth.loggedIn() ? <Redirect to="/login" /> : <Dashboard />}
             </Route>
             <Route exact path="/:username">
-             <Profile />
+            {!Auth.loggedIn() ? <Redirect to="/login" /> : <Profile />}
             </Route>
           </Switch>
       </Router>

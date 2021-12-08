@@ -14,7 +14,6 @@ const Header = () => {
                 </>
                 ) : (
                 <>
-                    <Link className="linkStyles" to="/discover"><li className="navigationStyles">Discover</li></Link>
                     <Link className="linkStyles" to="/login"><li className="navigationStyles">Login</li></Link>
                 </>
                 )
