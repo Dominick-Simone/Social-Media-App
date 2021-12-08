@@ -33,25 +33,27 @@ const Profile = () => {
             <div className="profileOuterDiv">
                 <div className="profileHeaderDiv">
                     <h3 className="marginOne">{user.first_name}  @{user.username}</h3>
-                    <h4 className="marginOne">Followers: {followers} Following: {following}</h4>
                     {Auth.loggedIn() ? (
-                    <>
+                        <>
                         <button className="followButton" onClick={() => toggleFollow({variables: {followed: parseInt(user.id), user_id: parseInt(Auth.getProfile().data.id)}})}>Follow</button>
                     </>
                     ) : (
                         <p></p>
-                    )
-                }
+                        )
+                    }
                     
                 </div>
                 <div className="profileTextDiv">
-                    <p>Account Created {accountCreated }</p>
+                    <h4 className="marginSmall">Followers: {followers} Following: {following}</h4>
+                    <p>Joined {accountCreated }</p>
                 </div>
                 
             </div>
+            <div className="postContainer">
             {user.posts.map((post) => {
                 return <Post key={post.id} createdAt={post.createdAt} postId={post.id} username={user.username} likes={post.likes.length} firstName={user.first_name} postText={post.post_text} />
             })}
+            </div>
         </>
     )
 }
