@@ -26,7 +26,10 @@ const Home = () => {
             posts.push(post)
         })
     })
-    console.log(posts)
+    const sortByPostDate = (a,b) => {
+        return b.createdAt - a.createdAt;
+    }
+    posts.sort(sortByPostDate)
     return (
         <>
             {/* if logged in */}

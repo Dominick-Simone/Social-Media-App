@@ -27,6 +27,14 @@ const Profile = () => {
     if (loading) {
         return <h1></h1>;
     }
+    let allPosts = [];
+    user.posts.forEach((post) => {
+        allPosts.push(post)
+    })
+    const sortByPostDate = (a,b) => {
+        return b.createdAt - a.createdAt;
+    }
+    allPosts.sort(sortByPostDate)
     const accountCreated = getMonthDay(parseInt(user.createdAt))
     return (
         <>
@@ -50,7 +58,7 @@ const Profile = () => {
                 
             </div>
             <div className="postContainer">
-            {user.posts.map((post) => {
+            {allPosts.map((post) => {
                 return <Post key={post.id} createdAt={post.createdAt} postId={post.id} username={user.username} likes={post.likes.length} firstName={user.first_name} postText={post.post_text} />
             })}
             </div>

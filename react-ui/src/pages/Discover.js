@@ -7,17 +7,25 @@ import { QUERY_POSTS} from '../utils/queries';
 import Auth from '../utils/auth';
 const Discover = () => {
     const { loading, data } = useQuery(QUERY_POSTS);
-      const posts = data?.posts || [];
+    const posts = data?.posts || [];
     if(loading) {
         return <h1></h1>;
     }
+    let allPosts = [];
+    posts.forEach((post) => {
+        allPosts.push(post)
+    })
+    const sortByPostDate = (a,b) => {
+        return b.createdAt - a.createdAt;
+    }
+    allPosts.sort(sortByPostDate)
     return (
         <>
             {Auth.loggedIn() ? (
             <>
                 <CreatePost />
                 <div className="postContainer">
-                {posts.map((post) => {
+                {allPosts.map((post) => {
                     return <Post key={post.id} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text}/>
                 })}
                 </div>
@@ -25,7 +33,7 @@ const Discover = () => {
             ) : (
             <>
                 <div className="postContainer">
-                {posts.map((post) => {
+                {allPosts.map((post) => {
                     return <Post key={post.id} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text}/>
                 })}
                 </div>
