@@ -80,11 +80,13 @@ header {
   width: 360px;
   height: 520px;
   border-radius: 6px;
-  background-color: rgb(93, 91, 91);
+  background-color: white;
+  box-shadow: 0px 0px 4px 2px white;
 }
 .signUpHeader {
   text-align: center;
   padding-top: 15px;
+  color: black;
 }
 .signUpForm {
   width: 300px;
@@ -94,6 +96,7 @@ header {
   display: flex;
   margin-top: 1em;
   font-size: 18px;
+  color: black;
 }
 .signUpFormInput {
   width: 100%;
@@ -107,23 +110,26 @@ header {
   width: 316px;
   margin-top: 20px;
   border: none;
-  background: white;
-  color: black;
+  background: black;
+  color: white;
   font-size: 18px;
 }
 .signUpText {
   text-align: center;
+  margin-top: 5px;
 }
 
 .loginText {
   text-align: center;
+  margin-top: 5px;
 }
 .login {
   width: 360px;
   height: 300px;
   border-radius: 6px;
-  background-color: rgb(93, 91, 91);
+  background-color: white;
   margin: auto;
+  box-shadow: 0px 0px 4px 2px white;
 }
 .loginForm {
   width: 300px;
@@ -133,6 +139,7 @@ header {
   display: flex;
   margin-top: 1em;
   font-size: 18px;
+  color: black;
 }
 .loginInput {
   width: 100%;
@@ -146,12 +153,13 @@ header {
   width: 316px;
   margin-top: 20px;
   border: none;
-  background: white;
-  color: black;
+  background: black;
+  color: white;
   font-size: 18px;
 }
 .loginHeader {
   text-align: center;
+  color: black;
   padding-top: 15px;
 }
 .profileOuterDiv {

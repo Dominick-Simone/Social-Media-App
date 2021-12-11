@@ -27,7 +27,7 @@ const Post = ({username, firstName, postText, postId, createdAt, likes}) => {
     return (
         <div className="postOuterDiv">
             <div className="singlePostHeaderDiv">
-                <h4 className="marginOne inline">{firstName} @{username == Auth.getProfile().data.username ? <Link to="/dashboard">{username}</Link> : <Link to={`/${username}`}>{username}</Link>}</h4><p className="inline">{datePosted}</p>
+                <h4 className="marginOne inline">{firstName} @{username === Auth.getProfile().data.username ? <Link to="/dashboard">{username}</Link> : <Link to={`/${username}`}>{username}</Link>}</h4><p className="inline">{datePosted}</p>
             </div>
             <div className="singlePostTextDiv">
                 <p>{ReactEmoji.emojify(postText)}</p>
