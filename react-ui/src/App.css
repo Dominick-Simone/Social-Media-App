@@ -165,7 +165,7 @@ header {
 .profileOuterDiv {
   width: 25vw;
   margin: 2em auto;
-  border: 2px solid #404040;
+  border: 2px solid white;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;

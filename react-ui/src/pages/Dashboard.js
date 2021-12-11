@@ -6,6 +6,7 @@ import { QUERY_DASHBOARD } from '../utils/queries';
 import getMonthDay from '../utils/dateFormatter';
 import { TOGGLE_FOLLOW } from '../utils/mutations';
 import Auth from '../utils/auth';
+import CreatePost from '../components/CreatePost';
 
 const Dashboard = () => {
     const { loading, data } = useQuery(QUERY_DASHBOARD);
@@ -48,10 +49,11 @@ const Dashboard = () => {
                 </div>
                 
             </div>
-            <div className="postContainer">
-            {allPosts.map((post) => {
+            <CreatePost />
+            <div className={allPosts.length > 0 ? "postContainer" : ""}>
+            {allPosts.length > 0 ? allPosts.map((post) => {
                 return <Post key={post.id} createdAt={post.createdAt} postId={post.id} username={user.username} likes={post.likes.length} firstName={user.first_name} postText={post.post_text} />
-            })}
+            }) : <h1 className="alignCenter">Create posts for them to appear here!</h1>}
             </div>
         </>
     )

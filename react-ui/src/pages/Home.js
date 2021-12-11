@@ -34,10 +34,10 @@ const Home = () => {
         <>
             {/* if logged in */}
             <CreatePost />
-            <div className="postContainer">
-                {posts.map((post) => {
+            <div className={posts.length > 0 ? "postContainer" : ""}>
+                {posts.length > 0 ? posts.map((post) => {
                     return <Post key={post.id} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text} />
-                })}
+                }) : <h2 className="alignCenter">Create your first post or follow someone from the discover tab to see posts in your feed!</h2>}
             </div>
         </>
     )
