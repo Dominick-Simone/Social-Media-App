@@ -9,7 +9,7 @@ const resolvers = {
           {
           include: 
           [
-            {model: Post, include: [User, Likes]},
+            {model: Post, include: [User, Likes, {model: Comments, include: [User]}]},
             "followers", 
             "following"
           ]
@@ -25,12 +25,12 @@ const resolvers = {
       user: async (parent, { username }, context) => {
         console.log("Context: ", context.user)
         const params = username ? { username } : {};
-        const user = await User.findOne({ where: { username: params.username }, include: [{model: Post, include: [Likes]}, 'followers', 'following'] });
+        const user = await User.findOne({ where: { username: params.username }, include: [{model: Post, include: [Likes, {model: Comments, include: [User]}]}, 'followers', 'following'] });
         return user;
       },
       dashboard: async (parent, args, context) => {
         console.log("Context: ", context.user)
-        const user = await User.findOne({ where: { id: context.user.id }, include: [{model: Post, include: [Likes]}, 'followers', 'following'] });
+        const user = await User.findOne({ where: { id: context.user.id }, include: [{model: Post, include: [Likes, {model: Comments, include: [User]}]}, 'followers', 'following'] });
         return user;
       },
       homepage: async (parent, { user_id }) => {
@@ -39,9 +39,9 @@ const resolvers = {
             where: {id: user_id},
             include: 
             [
-              {model: Post, include: [Likes, User]}, 
+              {model: Post, include: [Likes, User, {model: Comments, include: [User]}]}, 
               "followers", 
-              {model: User, as: "following", include: {model: Post, include: [User, Likes]}}
+              {model: User, as: "following", include: {model: Post, include: [User, Likes, {model: Comments, include: [User]}]}}
             ]
           },
         )
@@ -62,6 +62,10 @@ const resolvers = {
           },
           {
             model: Likes
+          },
+          {
+            model: Comments, 
+            include: [User]
           }
         ]
         }
@@ -98,7 +102,20 @@ const resolvers = {
         return await Post.create({user_id, post_text})
       },
       createComment: async (parent, {comment_text, post_id}, context) => {
-        return await Comments.create({post_id, comment_text, author_id: context.user.id})
+        const comment = await Comments.create({post_id, comment_text, author_id: context.user.id})
+        const user = await User.findOne(
+          {
+            where: {id: context.user.id},
+          },
+        )
+        return {
+          comment_text: comment.comment_text,
+          createdAt: comment.createdAt,
+          user: {
+            first_name: user.first_name,
+            username: user.username
+          }
+        };
       },
       toggleLike: async (parent, {post_id, user_liked_by}) => {
         const checkLikes = await Likes.findAll({where: {post_id: post_id}})

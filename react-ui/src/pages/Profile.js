@@ -58,8 +58,8 @@ const Profile = () => {
                 
             </div>
             <div className="postContainer">
-            {allPosts.map((post) => {
-                return <Post key={post.id} createdAt={post.createdAt} postId={post.id} username={user.username} likes={post.likes.length} firstName={user.first_name} postText={post.post_text} />
+            {allPosts.map((post, index) => {
+                return <Post key={post.id} index={index} comments={post.comments} createdAt={post.createdAt} postId={post.id} username={user.username} likes={post.likes.length} firstName={user.first_name} postText={post.post_text} />
             })}
             </div>
         </>
