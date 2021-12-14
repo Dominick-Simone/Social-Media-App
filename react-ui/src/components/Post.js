@@ -35,6 +35,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
     const handleCommentSubmit = async (event) => {
         event.preventDefault()
         addComment({variables: {post_id: postId, comment_text: commentText}})
+        setCommentText('')
     }
     const handleCommentChange = async (event) => {
         setCommentText(event.target.value)
@@ -63,7 +64,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
                     <form onSubmit={handleCommentSubmit}>
                         <h3 className="addCommentLabel">Add a Comment:</h3>
                         <div className="addCommentDiv">
-                            <textarea rows="2" className="addCommentInput" onChange={handleCommentChange} type="text" />
+                            <textarea rows="2" className="addCommentInput" value={commentText} onChange={handleCommentChange} type="text" />
                         </div>
                         <div className="commentButtonDiv">
                             <button className="sendCommentButton" type="submit">Send</button>
@@ -74,7 +75,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
                         <div className="singleCommentDiv">
                             <h4 className="marginSmall inline">{comment.user.first_name}</h4>
                             <h4 className="marginSmall inline">@{comment.user.username === Auth.getProfile().data.username ? <Link to="/dashboard">{comment.user.username}</Link> : <Link to={`/${comment.user.username}`}>{comment.user.username}</Link>}</h4>
-                            <p className="singlePostTextDiv">{comment.comment_text}</p>
+                            <p className="singlePostTextDiv">{ReactEmoji.emojify(comment.comment_text)}</p>
                         </div>
                     ))}
                 </div>
@@ -84,7 +85,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
                 (<form onSubmit={handleCommentSubmit}>
                     <h3 className="addCommentLabel">Add a Comment:</h3>
                     <div className="addCommentDiv">
-                        <textarea rows="2" className="addCommentInput" onChange={handleCommentChange} type="text" />
+                        <textarea rows="2" className="addCommentInput" value={commentText} onChange={handleCommentChange} type="text" />
                     </div>
                     <div className="commentButtonDiv">
                             <button className="sendCommentButton" type="submit">Send</button>
