@@ -43,3 +43,15 @@ mutation($followed: ID! $user_id: ID!){
   toggleFollow(followed: $followed user_id: $user_id) 
 }
 `;
+
+export const ADD_COMMENT = gql`
+mutation($comment_text: String! $post_id: ID!) {
+  createComment(post_id: $post_id comment_text: $comment_text) {
+    comment_text
+    createdAt
+    user {
+      username
+      first_name
+    }
+  }
+}`
