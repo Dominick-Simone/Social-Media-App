@@ -11,6 +11,10 @@
 .postOuterDiv {
   border-bottom: 2px solid #404040;
 }
+.postOuterDivBackground { 
+  border-bottom: 2px solid #404040;
+  background-color: #151515;
+}
 .singlePostHeaderDiv {
   text-align: left;
   height: 1em;
@@ -210,9 +214,23 @@ header {
   font-size: medium;
   font-weight: 700;
 }
-/* .likeCount {
+.commentButtonDiv {
+  display: flex;
+  justify-content: center;
+}
+.sendCommentButton {
+  border: 0px solid #404040;
+  border-radius: 25px;
+  outline: none;
+  padding: 3px 8px;
+  background-color: white;
+  color: black;
+  font-size: medium;
+  font-weight: 700;
+}
+.likeCount {
   margin-right: auto;
-} */
+}
 .commentButton {
   padding: 3px 8px;
   background-color: white;
@@ -245,6 +263,22 @@ header {
 .followButton:active {
   transform: scale(0.96);
   box-shadow: 3px 2px 22px 1px rgba(104, 72, 72, 0.24);
+}
+.addCommentLabel {
+  display: block;
+  margin: 1em;
+}
+.addCommentDiv {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+.addCommentInput {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 6px;
+  outline: none;
 }
 @media only screen and (max-width: 1000px) {
   .postContainer {
