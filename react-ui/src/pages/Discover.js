@@ -26,15 +26,15 @@ const Discover = () => {
                 <CreatePost />
                 <div className="postContainer">
                 {allPosts.map((post) => {
-                    return <Post key={post.id} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text}/>
+                    return <Post key={post.id} comments={post.comments} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text}/>
                 })}
                 </div>
             </>
             ) : (
             <>
                 <div className="postContainer">
-                {allPosts.map((post) => {
-                    return <Post key={post.id} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text}/>
+                {allPosts.map((post, index) => {
+                    return <Post key={post.id} index={index} comments={post.comments} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text}/>
                 })}
                 </div>
             </>
