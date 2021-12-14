@@ -34,6 +34,14 @@ query userByUsername($username: String!) {
           likes {
             id
           }
+          comments {
+            comment_text
+            createdAt
+            user {
+              username
+              first_name
+            }
+          }
         }
         followers {
           username
@@ -63,6 +71,14 @@ query posts {
     likes {
       id
     }
+    comments {
+      comment_text
+      createdAt
+      user {
+        username
+        first_name
+      }
+    }
     createdAt
   }
 }
@@ -90,8 +106,16 @@ query userByUsername($user_id: ID!) {
         }
         user {
           username
+          first_name
+          id
+        }
+        comments {
+          comment_text
+          createdAt
+          user {
+            username
             first_name
-            id
+          }
         }
       }
       following {
@@ -108,6 +132,14 @@ query userByUsername($user_id: ID!) {
           }
           likes {
             id
+          }
+          comments {
+            comment_text
+            createdAt
+            user {
+              username
+              first_name
+            }
           }
         }
       }
@@ -128,6 +160,14 @@ query userByUsername {
           createdAt
           likes {
             id
+          }
+          comments {
+            comment_text
+            createdAt
+            user {
+              username
+              first_name
+            }
           }
         }
         followers {
