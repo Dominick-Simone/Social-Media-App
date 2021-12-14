@@ -51,8 +51,8 @@ const Dashboard = () => {
             </div>
             <CreatePost />
             <div className={allPosts.length > 0 ? "postContainer" : ""}>
-            {allPosts.length > 0 ? allPosts.map((post) => {
-                return <Post key={post.id} createdAt={post.createdAt} postId={post.id} username={user.username} likes={post.likes.length} firstName={user.first_name} postText={post.post_text} />
+            {allPosts.length > 0 ? allPosts.map((post, index) => {
+                return <Post key={post.id} index={index} comments={post.comments} createdAt={post.createdAt} postId={post.id} username={user.username} likes={post.likes.length} firstName={user.first_name} postText={post.post_text} />
             }) : <h1 className="alignCenter">Create posts for them to appear here!</h1>}
             </div>
         </>
