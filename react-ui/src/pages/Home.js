@@ -30,13 +30,14 @@ const Home = () => {
         return b.createdAt - a.createdAt;
     }
     posts.sort(sortByPostDate)
+    console.log(posts)
     return (
         <>
             {/* if logged in */}
             <CreatePost />
             <div className={posts.length > 0 ? "postContainer" : ""}>
-                {posts.length > 0 ? posts.map((post) => {
-                    return <Post key={post.id} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text} />
+                {posts.length > 0 ? posts.map((post, index) => {
+                    return <Post key={post.id} index={index} likes={post.likes.length} createdAt={post.createdAt} postId={post.id} username={post.user.username} firstName={post.user.first_name} postText={post.post_text} comments={post.comments} />
                 }) : <h2 className="alignCenter">Create your first post or follow someone from the discover tab to see posts in your feed!</h2>}
             </div>
         </>
