@@ -53,7 +53,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
                 {Auth.loggedIn() ? (
                     <>
                         <button className="marginOne commentButton" onClick={() => toggleComments()}>Comments {comments ? currentComments.length : 0}</button>
-                        <button className="marginOne likeButton" onClick={() => handleClick()} datapostid={postId}>Like</button>
+                        <button className="marginOne postButton" onClick={() => handleClick()} datapostid={postId}>Like</button>
                         <h4 className="likeCount">{likeCount}</h4>
                     </>) :
                     <h4>Likes: {likeCount}</h4>
