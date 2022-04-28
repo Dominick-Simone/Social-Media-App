@@ -117,26 +117,42 @@ const resolvers = {
           }
         };
       },
-      toggleLike: async (parent, {post_id, user_liked_by}) => {
+      toggleLike: async (parent, {post_id}, context) => {
         const checkLikes = await Likes.findAll({where: {post_id: post_id}})
         for (i = 0; i < checkLikes.length; i++) {
-          if (checkLikes[i].user_liked_by == user_liked_by) {
+          console.log(checkLikes[i].user_liked_by, context.user.id)
+          if (checkLikes[i].user_liked_by == context.user.id) {
             await Likes.destroy({where: {id: checkLikes[i].id}})
             return -1;
           }
         }
-        await Likes.create({user_liked_by, post_id})
+        await Likes.create({user_liked_by: context.user.id, post_id})
         return 1;
       },
-      toggleFollow: async (parent, {followed, user_id}) => {
-        const checkFollows = await Follows.findAll({where: {follower_id: user_id}})
+      checkLike: async (parent, args, context) => {
+        const checkLiked = await Likes.findOne({where: {post_id: args.post_id, user_liked_by: context.user.id}})
+        if(checkLiked !== null) {
+          return 1;
+        }
+        return -1;
+      },
+      checkFollow: async (parent, args, context) => {
+        const checkFollow = await Follows.findOne({where: {followed_id: args.user_id, follower_id: context.user.id}})
+        if(checkFollow !== null) {
+          return 1;
+        }
+        return -1;
+      },
+      toggleFollow: async (parent, {followed}, context) => {
+        const checkFollows = await Follows.findAll({where: {follower_id: context.user.id}})
+        console.log(`${checkFollows}`)
         for (i = 0; i < checkFollows.length; i++) {
           if (checkFollows[i].followed_id == followed) {
             await Follows.destroy({where: {id: checkFollows[i].id}})
             return -1;
           }
         }
-        await Follows.create({followed_id: followed, follower_id: user_id})
+        await Follows.create({followed_id: followed, follower_id: context.user.id})
         return 1;
       },
       login: async (parent, { username, password }) => {
@@ -145,7 +161,7 @@ const resolvers = {
           throw new AuthenticationError('Incorrect credentials');
         }
   
-        const correctPw = await user.isCorrectPassword(password);
+        const correctPw = user.isCorrectPassword(password);
   
         if (!correctPw) {
           throw new AuthenticationError('Incorrect credentials');
