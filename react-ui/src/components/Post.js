@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_LIKES } from '../utils/queries';
-import { ADD_COMMENT, TOGGLE_LIKE } from "../utils/mutations"
+import { ADD_COMMENT, TOGGLE_LIKE, CHECK_LIKE } from "../utils/mutations"
 import getMonthDay from "../utils/dateFormatter";
 import Auth from '../utils/auth';
 import ReactEmoji from "react-emoji"
@@ -11,14 +11,20 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
 
 
     const [likeCount, setLikeCount] = useState(likes)
+    const [liked, setLiked] = useState(false)
     const [currentComments, setComments] = useState(comments)
     const [commentText, setCommentText] = useState('')
     const [addComment, { commentError, commentData }] = useMutation(ADD_COMMENT, {
         onCompleted: (data) => setComments([...currentComments, data.createComment])
     })
-    console.log(currentComments)
-    const [toggleLike, { error, data }] = useMutation(TOGGLE_LIKE, {
-        onCompleted: (data) => setLikeCount(likeCount + data.toggleLike)
+    const [toggleLike, { toggleLikeError, toggleLikeData }] = useMutation(TOGGLE_LIKE, {
+        onCompleted: (data) => {
+            setLikeCount(likeCount + data.toggleLike)
+            setLiked(!liked)
+        }
+    })
+    const [checkLike, { checkLikeError, checkLikeData }] = useMutation(CHECK_LIKE, {
+        onCompleted: (data) => data.checkLike == 1 ? setLiked(true) : setLiked(false)
     })
     const [showComments, setShowComments] = useState(false)
     const toggleComments = () => {
@@ -26,12 +32,15 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
     }
     const handleClick = async () => {
         try {
-            const { data } = await toggleLike({ variables: { post_id: parseInt(postId), user_liked_by: parseInt(Auth.getProfile().data.id) } }
+            const { data } = await toggleLike({ variables: { post_id: parseInt(postId)} }
             )
         } catch (err) {
             console.log(err)
         }
     }
+    useEffect(() => {
+        checkLike({ variables: { post_id: parseInt(postId)}})
+    },[liked])
     const handleCommentSubmit = async (event) => {
         event.preventDefault()
         addComment({variables: {post_id: postId, comment_text: commentText}})
@@ -53,7 +62,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
                 {Auth.loggedIn() ? (
                     <>
                         <button className="marginOne commentButton" onClick={() => toggleComments()}>Comments {comments ? currentComments.length : 0}</button>
-                        <button className="marginOne postButton" onClick={() => handleClick()} datapostid={postId}>Like</button>
+                        <button className="marginOne postButton" onClick={() => handleClick()} datapostid={postId}>{liked ? "Liked" : "Like"}</button>
                         <h4 className="likeCount">{likeCount}</h4>
                     </>) :
                     <h4>Likes: {likeCount}</h4>
