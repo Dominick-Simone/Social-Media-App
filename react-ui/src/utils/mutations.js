@@ -33,14 +33,14 @@ mutation($user_id: ID! $post_text: String!){
 `;
 
 export const TOGGLE_LIKE = gql`
-mutation($user_liked_by: ID! $post_id: ID!){
-	toggleLike(user_liked_by: $user_liked_by post_id: $post_id)
+mutation($post_id: ID!){
+	toggleLike(post_id: $post_id)
 }
 `;
 
 export const TOGGLE_FOLLOW = gql`
-mutation($followed: ID! $user_id: ID!){
-  toggleFollow(followed: $followed user_id: $user_id) 
+mutation($followed: ID!){
+  toggleFollow(followed: $followed) 
 }
 `;
 
@@ -55,3 +55,15 @@ mutation($comment_text: String! $post_id: ID!) {
     }
   }
 }`
+
+export const CHECK_LIKE = gql`
+mutation($post_id: ID!){
+  checkLike(post_id: $post_id)
+}
+`;
+
+export const CHECK_FOLLOW = gql`
+mutation($user_id: ID!){
+  checkFollow(user_id: $user_id)
+}
+`;
