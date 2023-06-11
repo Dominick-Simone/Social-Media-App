@@ -9,7 +9,6 @@ import ReactEmoji from "react-emoji"
 
 const Post = ({ username, firstName, postText, postId, createdAt, likes, comments, index }) => {
 
-    console.log(postId)
     const [likeCount, setLikeCount] = useState(likes)
     const [liked, setLiked] = useState(false)
     const [currentComments, setComments] = useState(comments)
@@ -39,8 +38,6 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
             console.log(err)
         }
     }
-    console.log(username)
-    console.log(Auth.getProfile().data.username)
     useEffect(() => {
         checkLike({ variables: { post_id: parseInt(postId) } })
     }, [liked])

@@ -30,7 +30,6 @@ const Home = () => {
         return b.createdAt - a.createdAt;
     }
     posts.sort(sortByPostDate)
-    console.log(posts)
     return (
         <>
             {/* if logged in */}

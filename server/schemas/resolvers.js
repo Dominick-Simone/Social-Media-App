@@ -19,17 +19,14 @@ const resolvers = {
       },
       comments: async () => {
         const comments = await Comments.findAll({include: [User, Post]})
-        console.log(comments)
         return comments;
       },
       user: async (parent, { username }, context) => {
-        console.log("Context: ", context.user)
         const params = username ? { username } : {};
         const user = await User.findOne({ where: { username: params.username }, include: [{model: Post, include: [Likes, {model: Comments, include: [User]}]}, 'followers', 'following'] });
         return user;
       },
       dashboard: async (parent, args, context) => {
-        console.log("Context: ", context.user)
         const user = await User.findOne({ where: { id: context.user.id }, include: [{model: Post, include: [Likes, {model: Comments, include: [User]}]}, 'followers', 'following'] });
         return user;
       },
@@ -120,7 +117,6 @@ const resolvers = {
       toggleLike: async (parent, {post_id}, context) => {
         const checkLikes = await Likes.findAll({where: {post_id: post_id}})
         for (i = 0; i < checkLikes.length; i++) {
-          console.log(checkLikes[i].user_liked_by, context.user.id)
           if (checkLikes[i].user_liked_by == context.user.id) {
             await Likes.destroy({where: {id: checkLikes[i].id}})
             return -1;
@@ -155,13 +151,10 @@ const resolvers = {
         return 1;
       },
       deletePost: async (parent, { post_id }) => {
-        console.log("postId next")
-        console.log(post_id)
         if(!post_id) {
           throw new AuthenticationError('No Post id provided');
         }
         const post = await Post.destroy({where: { id: post_id }});
-        console.log(post)
         return 1;
       },
       login: async (parent, { username, password }) => {
