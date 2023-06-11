@@ -145,7 +145,6 @@ const resolvers = {
       },
       toggleFollow: async (parent, {followed}, context) => {
         const checkFollows = await Follows.findAll({where: {follower_id: context.user.id}})
-        console.log(`${checkFollows}`)
         for (i = 0; i < checkFollows.length; i++) {
           if (checkFollows[i].followed_id == followed) {
             await Follows.destroy({where: {id: checkFollows[i].id}})
@@ -155,16 +154,21 @@ const resolvers = {
         await Follows.create({followed_id: followed, follower_id: context.user.id})
         return 1;
       },
+      deletePost: async (parent, { postId }) => {
+        const post = await Post.deleteOne({where: { id: postId }});
+        console.log(post)
+        return 1;
+      },
       login: async (parent, { username, password }) => {
         const user = await User.findOne({where: { username: username }});
         if (!user) {
-          throw new AuthenticationError('Incorrect credentials');
+          alert('Incorrect credentials');
         }
   
         const correctPw = user.isCorrectPassword(password);
-  
+        
         if (!correctPw) {
-          throw new AuthenticationError('Incorrect credentials');
+          
         }
   
         const token = signToken(user);

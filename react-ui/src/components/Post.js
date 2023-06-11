@@ -32,18 +32,18 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
     }
     const handleClick = async () => {
         try {
-            const { data } = await toggleLike({ variables: { post_id: parseInt(postId)} }
+            const { data } = await toggleLike({ variables: { post_id: parseInt(postId) } }
             )
         } catch (err) {
             console.log(err)
         }
     }
     useEffect(() => {
-        checkLike({ variables: { post_id: parseInt(postId)}})
-    },[liked])
+        checkLike({ variables: { post_id: parseInt(postId) } })
+    }, [liked])
     const handleCommentSubmit = async (event) => {
         event.preventDefault()
-        addComment({variables: {post_id: postId, comment_text: commentText}})
+        addComment({ variables: { post_id: postId, comment_text: commentText } })
         setCommentText('')
     }
     const handleCommentChange = async (event) => {
@@ -81,15 +81,16 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
                     </form>
                     <h2 className="marginSmall">Comments</h2>
                     {currentComments.map((comment) => {
-                    const dateCommentPosted = getMonthDay(parseInt(comment.createdAt))
-                    return (
-                        <div className="singleCommentDiv">
-                            <h4 className="marginSmall inline">{comment.user.first_name}</h4>
-                            <h4 className="marginSmall inline">@{comment.user.username === Auth.getProfile().data.username ? <Link to="/dashboard">{comment.user.username}</Link> : <Link to={`/${comment.user.username}`}>{comment.user.username}</Link>}</h4>
-                            <p className="inline">{dateCommentPosted}</p>
-                            <p className="singlePostTextDiv">{ReactEmoji.emojify(comment.comment_text)}</p>
-                        </div>
-                    )})}
+                        const dateCommentPosted = getMonthDay(parseInt(comment.createdAt))
+                        return (
+                            <div className="singleCommentDiv">
+                                <h4 className="marginSmall inline">{comment.user.first_name}</h4>
+                                <h4 className="marginSmall inline">@{comment.user.username === Auth.getProfile().data.username ? <Link to="/dashboard">{comment.user.username}</Link> : <Link to={`/${comment.user.username}`}>{comment.user.username}</Link>}</h4>
+                                <p className="inline">{dateCommentPosted}</p>
+                                <p className="singlePostTextDiv">{ReactEmoji.emojify(comment.comment_text)}</p>
+                            </div>
+                        )
+                    })}
                 </div>
                 : <></>
             }
@@ -100,8 +101,8 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
                         <textarea rows="2" className="addCommentInput" value={commentText} onChange={handleCommentChange} type="text" />
                     </div>
                     <div className="commentButtonDiv">
-                            <button className="sendCommentButton" type="submit">Send</button>
-                        </div>
+                        <button className="sendCommentButton" type="submit">Send</button>
+                    </div>
                 </form>) : (
                     <></>
                 )

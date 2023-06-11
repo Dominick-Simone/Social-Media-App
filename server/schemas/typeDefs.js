@@ -63,6 +63,7 @@ const typeDefs = gql`
     createComment(post_id: ID!, comment_text: String!): Comments
     toggleLike(post_id: ID!): Int
     toggleFollow(followed: ID!): Int
+    deletePost(postId: ID!): Int
     login(username: String!, password: String!): Auth
     checkLike(post_id: ID!): Int
     checkFollow(user_id: ID!): Int
