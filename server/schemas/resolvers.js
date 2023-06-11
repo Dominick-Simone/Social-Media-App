@@ -154,21 +154,26 @@ const resolvers = {
         await Follows.create({followed_id: followed, follower_id: context.user.id})
         return 1;
       },
-      deletePost: async (parent, { postId }) => {
-        const post = await Post.deleteOne({where: { id: postId }});
+      deletePost: async (parent, { post_id }) => {
+        console.log("postId next")
+        console.log(post_id)
+        if(!post_id) {
+          throw new AuthenticationError('No Post id provided');
+        }
+        const post = await Post.destroy({where: { id: post_id }});
         console.log(post)
         return 1;
       },
       login: async (parent, { username, password }) => {
         const user = await User.findOne({where: { username: username }});
         if (!user) {
-          alert('Incorrect credentials');
+          throw new AuthenticationError('Incorrect credentials');
         }
   
         const correctPw = user.isCorrectPassword(password);
         
         if (!correctPw) {
-          
+          throw new AuthenticationError('Incorrect credentials');
         }
   
         const token = signToken(user);

@@ -2,14 +2,14 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_LIKES } from '../utils/queries';
-import { ADD_COMMENT, TOGGLE_LIKE, CHECK_LIKE } from "../utils/mutations"
+import { ADD_COMMENT, TOGGLE_LIKE, CHECK_LIKE, DELETE_POST } from "../utils/mutations"
 import getMonthDay from "../utils/dateFormatter";
 import Auth from '../utils/auth';
 import ReactEmoji from "react-emoji"
 
 const Post = ({ username, firstName, postText, postId, createdAt, likes, comments, index }) => {
 
-
+    console.log(postId)
     const [likeCount, setLikeCount] = useState(likes)
     const [liked, setLiked] = useState(false)
     const [currentComments, setComments] = useState(comments)
@@ -26,6 +26,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
     const [checkLike, { checkLikeError, checkLikeData }] = useMutation(CHECK_LIKE, {
         onCompleted: (data) => data.checkLike == 1 ? setLiked(true) : setLiked(false)
     })
+    const [deletePost, { deletePostError, deletePostData }] = useMutation(DELETE_POST)
     const [showComments, setShowComments] = useState(false)
     const toggleComments = () => {
         setShowComments(!showComments)
@@ -38,6 +39,8 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
             console.log(err)
         }
     }
+    console.log(username)
+    console.log(Auth.getProfile().data.username)
     useEffect(() => {
         checkLike({ variables: { post_id: parseInt(postId) } })
     }, [liked])
@@ -53,7 +56,7 @@ const Post = ({ username, firstName, postText, postId, createdAt, likes, comment
     return (
         <div className={showComments && index != 0 ? "postOuterDivBackground" : "postOuterDiv"}>
             <div className="singlePostHeaderDiv">
-                <h4 className="marginOne inline">{firstName} @{username === Auth.getProfile().data.username ? <Link to="/dashboard">{username}</Link> : <Link to={`/${username}`}>{username}</Link>}</h4><p className="inline">{datePosted}</p>
+                <h4 className="marginOne inline">{firstName} @{username === Auth.getProfile().data.username ? <Link to="/dashboard">{username}</Link> : <Link to={`/${username}`}>{username}</Link>}</h4><p className="inline">{datePosted}</p>{username === Auth.getProfile().data.username ? <button onClick={() =>  deletePost({ variables: {post_id: postId} })} className="deletePost">X</button> :""}
             </div>
             <div className="singlePostTextDiv">
                 <p>{ReactEmoji.emojify(postText)}</p>

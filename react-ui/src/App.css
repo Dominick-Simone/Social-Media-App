@@ -8,6 +8,12 @@
 .inline {
   display: inline;
 }
+.deletePost {
+  text-align: right;
+}
+.deletePost p {
+  margin-right: 3%;
+}
 .postOuterDiv {
   border-bottom: 2px solid #404040;
 }
